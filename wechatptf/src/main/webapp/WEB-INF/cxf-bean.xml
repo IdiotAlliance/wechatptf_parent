@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd  
+
+    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- 首先定义个一个bean，给出类路径，id必须是唯一的 -->
+	<bean class="com.dt.wechatptf.services.ExampleServiceImpl" id="example"></bean>
+	<bean class="com.dt.wechatptf.services.MemberServiceImpl" id="member"></bean>
+	<bean class="com.dt.wechatptf.services.CompanyServiceImpl" id="company"></bean>
+	<bean class="com.dt.wechatptf.services.MailServiceImpl" id="mail"></bean>
+	<bean class="com.dt.wechatptf.services.ResourcesServiceImpl" id="resources"></bean>
+	<bean class="com.dt.wechatptf.services.ProductServiceImpl" id="product"></bean>
+
+	<jaxrs:server address="/" id="restservices">
+		<jaxrs:extensionMappings>
+			<entry key="xml" value="application/xml"></entry>
+			<entry key="json" value="application/json"></entry>
+		</jaxrs:extensionMappings>
+		<jaxrs:serviceBeans>
+			<!-- 将上面定义的bean添加到这里 -->
+			<ref bean="example"/>
+			<ref bean="member"/>
+			<ref bean="company"/>
+			<ref bean="mail"/>
+			<ref bean="resources"/>
+			<ref bean="product"/>
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+</beans>
