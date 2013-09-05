@@ -18,6 +18,15 @@
 	</properties>
 
 	<dependencies>
+	
+		<!-- Inner dependencies -->
+		<dependency>
+			<groupId>${parent.groupId}</groupId>
+			<artifactId>wechatptf_util</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+	
+		<!-- Outer dependencies -->
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-smartcn</artifactId>
@@ -35,13 +44,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.5.0-b01</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -49,9 +52,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.7</version>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
 		</dependency>
 
 		<dependency>
@@ -83,22 +86,18 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.5</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.13</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.22</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.7.2</version>
 		</dependency>
 
 		<dependency>
@@ -107,6 +106,7 @@
 			<version>4.0</version>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>wechatptf</finalName>

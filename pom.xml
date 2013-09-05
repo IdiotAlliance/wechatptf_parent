@@ -8,5 +8,7 @@
   <modules>
   	<module>wechatptf_faq</module>
     <module>wechatptf</module>
+    <module>wechatptf_frontend</module>
+    <module>wechatptf_util</module>
   </modules>
 </project>
