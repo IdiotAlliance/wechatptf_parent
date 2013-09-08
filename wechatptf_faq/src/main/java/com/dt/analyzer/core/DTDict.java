@@ -1,9 +1,8 @@
 package com.dt.analyzer.core;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +11,9 @@ import java.util.Map;
 import com.dt.analyzer.entity.Token;
 
 /***
- * 该类中加载停用词库和中文分词词库
+ * 该类中加载停用词库和中文分词词库。
+ * 貌似在静态上下文中不能直接用当前类的加载器来获取classpath中的资源？
+ * 
  * @author lvxiang
  *
  */
@@ -40,7 +41,7 @@ public final class DTDict {
 		String line = null;
 		
 		try {
-			reader = new BufferedReader(new FileReader(new File("cndict.txt")));
+			reader = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("cndict.txt")));
 			
 			while((line = reader.readLine()) != null){
 				String fchar = line.charAt(0) + "";
@@ -71,7 +72,7 @@ public final class DTDict {
 		String line = null;
 		
 		try {
-			reader = new BufferedReader(new FileReader(new File("cndict.txt")));
+			reader = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("stopwords.txt")));
 			
 			while((line = reader.readLine()) != null){
 				stopwords.put(line, true);
@@ -97,7 +98,7 @@ public final class DTDict {
 		String line = null;
 		
 		try {
-			reader = new BufferedReader(new FileReader(new File("cnfreq.txt")));
+			reader = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("cnfreq.txt")));
 			
 			while((line = reader.readLine()) != null){
 				line = line.replaceAll("\\s+", " ");

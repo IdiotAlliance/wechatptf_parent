@@ -104,4 +104,11 @@ public class UploadController extends BaseController{
 		return gson.toJson(rm);
 	}
 	
+	@RequestMapping(value="/doc", method=RequestMethod.POST)
+	public String uploadDocument(
+			@PathVariable("cid") String cid,
+			@RequestParam("doc") MultipartFile file){
+		return null;
+	}
+	
 }

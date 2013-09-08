@@ -11,7 +11,6 @@ import com.dt.analyzer.comparator.LengthComparator;
 import com.dt.analyzer.comparator.MorphemicFreedomComparator;
 import com.dt.analyzer.comparator.VarianceComparator;
 import com.dt.analyzer.entity.Chunk;
-import com.dt.analyzer.entity.Strategy;
 import com.dt.analyzer.entity.Token;
 
 /***
@@ -22,6 +21,24 @@ import com.dt.analyzer.entity.Token;
 public final class DTTokenizer {
 	
 	private static final Map<String, Token> atomTokens = new HashMap<String, Token>();
+	
+	/***
+	 * 中文分词策略
+	 * @author lvxiang
+	 *
+	 */
+	public static enum Strategy {
+		
+		/***
+		 * 简单策略，只采用最大匹配算法
+		 */
+		SIMPLE, 
+		
+		/***
+		 * 复杂策略
+		 */
+		COMPLEX;
+	}
 	
 	public static final List<Token> tokenize(String input, Strategy strategy){
 		switch(strategy){
@@ -256,13 +273,13 @@ public final class DTTokenizer {
 		return false;
 	}
 	
-	public static void main(String[] args){
-		tokensInStr("你好");
-		
-		List<Token> tokens = complexTokenize("蓝莲花");
-		for(Token token: tokens){
-			System.out.print(token.getToken() + "|");
-		}
-	}
+//	public static void main(String[] args){
+//		tokensInStr("你好");
+//		
+//		List<Token> tokens = complexTokenize("蓝莲花");
+//		for(Token token: tokens){
+//			System.out.print(token.getToken() + "|");
+//		}
+//	}
 	
 }
