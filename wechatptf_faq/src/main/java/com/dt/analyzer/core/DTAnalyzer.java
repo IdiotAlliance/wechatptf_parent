@@ -14,6 +14,8 @@ import com.dt.analyzer.entity.Token;
 import com.dt.analyzer.entity.TokenProfile;
 
 public class DTAnalyzer {
+	
+	private static final int MAX_DOCS = 100;
 
 	/****
 	 * 分析一个faq文件，并将分析结果导入数据库
@@ -45,12 +47,28 @@ public class DTAnalyzer {
 	/***
 	 * 查找一个问题的答案，返回候选的答案文档列表，按照匹配度由高到低进行排序。
 	 * 首先根据问题和商家的id尝试寻找100%匹配的项，如果找不到就对问题进行分词，
-	 * 到倒排索引中查找答案，并对答案用类似page rank的方式进行排序。
+	 * 到倒排索引中查找答案，并对答案用类似page rank的方式进行排序。返回的文
+	 * 档采用默认的最大个数100.
+	 * 
 	 * @param q 问题
 	 * @param cid 商家id
+	 * @see #ask(String, String, int)
 	 * @return
 	 */
 	public static List<Document> ask(String q, String cid){
+		return ask(q, cid, MAX_DOCS);
+	}
+	
+	/***
+	 * 查找一个问题的答案，返回候选的答案文档列表，按照匹配度由高到低进行排序。
+	 * 首先根据问题和商家的id尝试寻找100%匹配的项，如果找不到就对问题进行分词，
+	 * 到倒排索引中查找答案，并对答案用类似page rank的方式进行排序。
+	 * @param q
+	 * @param cid
+	 * @param max 返回列表中结果数目的上限
+	 * @return
+	 */
+	public static List<Document> ask(String q, String cid, int max){
 		if(q == null || cid == null)
 			throw new NullPointerException();
 		
@@ -90,8 +108,10 @@ public class DTAnalyzer {
 			for(String did: profile.getDocs()){
 				if(!temp.containsKey(did)){
 					Document doc = dd.getDocById(did);
-					doc.addRank(profile.getTlen()/Math.log(profile.getFreq()));
-					temp.put(did, doc);
+					if(doc != null){
+						doc.addRank(profile.getTlen()/Math.log(profile.getFreq()));
+						temp.put(did, doc);
+					}
 				}
 				else{
 					temp.get(did).addRank(profile.getTlen()/Math.log(profile.getFreq()));

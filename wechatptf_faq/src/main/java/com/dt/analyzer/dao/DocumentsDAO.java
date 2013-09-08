@@ -81,7 +81,7 @@ public class DocumentsDAO extends BaseMongoDAO{
 	}
 	
 	public final Document getDocById(String id){
-		DBObject o = dcc.findOne(new BasicDBObject(_ID, id));
+		DBObject o = dcc.findOne(new BasicDBObject(FAKE_ID, id));
 		if(o != null)
 			return new Document((String)o.get(QUESTION), (String)o.get(ANSWER), (String)o.get(CID));
 		return null;

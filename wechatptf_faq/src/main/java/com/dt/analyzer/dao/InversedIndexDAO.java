@@ -1,5 +1,6 @@
 package com.dt.analyzer.dao;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -57,12 +58,13 @@ public class InversedIndexDAO extends BaseMongoDAO{
 		final DBObject result = iiCollection.findOne(new BasicDBObject(TOKEN, token));
 		if(result != null){
 			int freq = (Integer) result.get(FREQ);
-			DBObject list = (BasicDBList) result.get(DOCS);
-			Set<String> keys = list.keySet();
-			String[] docs = new String[keys.size()];
+			BasicDBList list = (BasicDBList) result.get(DOCS);
+			String[] docs = new String[list.size()];
 			int i = 0;
-			for(String key: keys){
-				docs[i] = (String) list.get(key);
+			Iterator<Object> iter = list.iterator();
+			while(iter.hasNext()){
+				docs[i] = (String) iter.next();
+				i ++;
 			}
 			return new TokenProfile(docs, freq, token.length());
 		}
