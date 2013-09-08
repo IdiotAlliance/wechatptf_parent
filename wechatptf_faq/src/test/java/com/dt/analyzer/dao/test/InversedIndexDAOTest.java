@@ -37,7 +37,7 @@ public class InversedIndexDAOTest {
 	public void testRemoveToken(){
 		iid.createIndex("南大附近有什么好吃的", "123123");
 		iid.removeToken("南大");
-		iid.
+		assertNull(iid.getDocs("南大"));
 	}
 	
 	@After
