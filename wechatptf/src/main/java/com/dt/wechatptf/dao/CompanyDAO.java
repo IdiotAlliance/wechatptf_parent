@@ -127,7 +127,7 @@ public class CompanyDAO {
 			ps.setString(1, account);
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()){
-				company.setId(rs.getInt(1));
+				//company.setId(rs.getInt(1));
 				company.setAccount(rs.getString(2));
 				company.setPassword(rs.getString(3));
 				company.setName(rs.getString(4));

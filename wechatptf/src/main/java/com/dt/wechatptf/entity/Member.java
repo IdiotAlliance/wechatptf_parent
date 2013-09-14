@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Member {
 	
-	int id;
+	String id;
 	String weiid;	//微信号
 	String name;
 	int gender;		//性别，0男，1女，2未知	
@@ -30,10 +30,10 @@ public class Member {
 		this.points = points;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

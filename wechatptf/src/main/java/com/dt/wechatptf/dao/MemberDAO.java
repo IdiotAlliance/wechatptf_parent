@@ -171,7 +171,7 @@ public class MemberDAO {
 			ps.setInt(1, memberid);
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()){
-				member.setId(rs.getInt(1));
+				//member.setId(rs.getInt(1));
 				member.setWeiid(rs.getString(2));
 				member.setName(rs.getString(3));
 				member.setGender(rs.getInt(4));

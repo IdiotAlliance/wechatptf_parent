@@ -40,7 +40,7 @@ public class MemberCompanyDAO {
 					ResultSet rs2=ps2.executeQuery();
 					if(rs2.next()){
 						Member member = new Member();
-						member.setId(rs2.getInt(1));
+						//member.setId(rs2.getInt(1));
 						member.setWeiid(rs2.getString(2));
 						member.setName(rs2.getString(3));
 						member.setGender(rs2.getInt(4));
