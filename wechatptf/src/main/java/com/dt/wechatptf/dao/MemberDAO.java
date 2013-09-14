@@ -29,7 +29,7 @@ public class MemberDAO {
 			ps1.setString(1, member.getWeiid());
 			ps1.setString(2, member.getName());
 			ps1.setInt(3, member.getGender());
-			ps1.setDate(4, member.getBirthday());
+			//ps1.setDate(4, member.getBirthday());
 			ps1.setString(5, member.getAddress());
 			ps1.setString(6, member.getMail());
 			ps1.setString(7, member.getPhone());
@@ -102,7 +102,7 @@ public class MemberDAO {
 			PreparedStatement ps=conn.prepareStatement("update member set name=?,gender=?,birthday=?,address=?,mail=?,phone=? where id=?");
 			ps.setString(1, member.getName());
 			ps.setInt(2, member.getGender());
-			ps.setDate(3, member.getBirthday());
+			//ps.setDate(3, member.getBirthday());
 			ps.setString(4, member.getAddress());
 			ps.setString(5, member.getMail());
 			ps.setString(6, member.getPhone());
