@@ -9,7 +9,7 @@ public class DTTokenizerTest {
 
 	@Test
 	public void testSimpleTokenize(){
-		DTTokenizer.tokenize("我", Strategy.SIMPLE);
+		DTTokenizer.tokenize("我", DTTokenizer.Strategy.SIMPLE);
 	}
 	
 }
