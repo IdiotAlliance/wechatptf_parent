@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dt.wechatptf.dao.MemberDAO;
+import com.dt.wechatptf.entity.Activity;
 import com.dt.wechatptf.entity.Member;
+import com.dt.wechatptf.mongodao.ActDAO;
 import com.dt.wechatptf.util.ReturnMessage;
 import com.dt.wechatptf.util.TokenUtil;
 
@@ -103,5 +105,52 @@ public class WapController extends BaseController{
 	@RequestMapping(value="pay", method=RequestMethod.GET)
 	public ModelAndView pay(){
 		return null;
+	}
+	
+	@RequestMapping(value="/{type}/{goodsid}/{time}/activity", method=RequestMethod.GET)
+	public ModelAndView activity(@PathVariable("companyid") String cid, 
+			@PathVariable("wxid") String wid, @PathVariable("type") String type, 
+			@PathVariable("goodsid") String goodsid, @PathVariable("time") String time){
+		Map<String, String> ds = new HashMap<String, String>();
+		ds.put("cid", cid);
+		ds.put("wxid", wid);
+		ds.put("type", type);
+		ds.put("goodsid", goodsid);
+		ds.put("time", time);
+		ModelAndView mv = new ModelAndView("wap_activity");
+		mv.addAllObjects(ds);
+		return mv;
+	}
+	
+	@RequestMapping(value="/{type}/{goodsid}/{time}/addActivity", method=RequestMethod.POST)
+	public ModelAndView addActivity(HttpServletRequest request, @PathVariable("companyid") String cid, 
+			@PathVariable("wxid") String wid, @PathVariable("type") String type, 
+			@PathVariable("goodsid") String goodsid, @PathVariable("time") String time, 
+			String brief, String detail, String name, String password){
+		
+		String uuid = (String) request.getSession().getAttribute(TokenUtil.KEY_UUID);
+		
+		int tp = Integer.parseInt(type);
+		
+		Activity act = new Activity(wid,cid,tp,goodsid,time,brief,detail,name,password);
+		ActDAO ad = new ActDAO();
+		ReturnMessage rm = ad.addActivity(act);
+		
+		Map<String, String> ds = new HashMap<String, String>();
+		ds.put("fail", rm.getFail()+"");
+		ds.put("msg", rm.getMessage());
+		this.putValue(uuid, ds);
+		
+		ModelAndView mv = new ModelAndView("redirect:http://localhost:8080/wechatptf/wap/"+cid+"/"+wid+"/"+"/"+type+"/"+goodsid+"/"+time+"/activityAdded");
+		return mv;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/{type}/{goodsid}/{time}/activityAdded", method=RequestMethod.GET)
+	public ModelAndView activityAdded(HttpServletRequest request){
+		String uuid = (String) request.getSession().getAttribute(TokenUtil.KEY_UUID);
+		ModelAndView mv = new ModelAndView("wap_activityAdded");
+		mv.addAllObjects((Map<String, String>)this.getValue(uuid));
+		return mv;
 	}
 }

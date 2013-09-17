@@ -26,9 +26,9 @@ public class ActivityDAO {
 		try {
 			PreparedStatement ps = conn.prepareStatement("insert into activity (weiid,companyid,type,goodsid,time,brief,detail,name,password) values(?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, act.getWeiid());
-			ps.setInt(2, act.getCompanyid());
+			//ps.setInt(2, act.getCompanyid());
 			ps.setInt(3, act.getType());
-			ps.setInt(4, act.getGoodsid());
+			//ps.setInt(4, act.getGoodsid());
 			ps.setString(5, act.getTime());
 			ps.setString(6, act.getBrief());
 			ps.setString(7, act.getDetail());
@@ -90,7 +90,7 @@ public class ActivityDAO {
 			PreparedStatement ps=conn.prepareStatement("update activity set brief=?,detail=? where id=?");
 			ps.setString(1, act.getBrief());
 			ps.setString(2, act.getDetail());
-			ps.setInt(3, act.getId());
+			//ps.setInt(3, act.getId());
 			ps.executeUpdate();
 			message.setFail(0);
 			message.setMessage("更新活动信息成功！");
@@ -121,10 +121,10 @@ public class ActivityDAO {
 			ps.setString(4, time);
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()){
-				act.setId(rs.getInt(1));
+				//act.setId(rs.getInt(1));
 				act.setWeiid(weiid);
 				act.setType(type);
-				act.setGoodsid(goodsid);
+				//act.setGoodsid(goodsid);
 				act.setTime(time);
 				act.setBrief(rs.getString(7));
 				act.setDetail(rs.getString(8));

@@ -105,8 +105,8 @@ public class MemComDAO extends BaseDAO{
 		String companyid = cd.queryCompanyid(account);
 		DBCursor cur = this.dc.find(new BasicDBObject("companyid", companyid));
 		while(cur != null && cur.hasNext()){
-			DBObject o1 = cur.next();
-			String memberid = (String)o1.get("memberid");
+			DBObject o = cur.next();
+			String memberid = (String)o.get("memberid");
 			MemDAO md = new MemDAO();
 			Member m = md.queryMemById(memberid);
 			mems.add(m);

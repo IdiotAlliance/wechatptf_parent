@@ -2,12 +2,12 @@ package com.dt.wechatptf.entity;
 
 public class Activity {
 	
-	int id;
+	String id;
 	String weiid;
-	int companyid;
+	String companyid;
 	int type;			//相关的商品种类，0普通商品，1团购
-	int goodsid;		//相对应的普通商品或团购等的id
-	String time;			//发起活动时间戳
+	String goodsid;		//相对应的普通商品或团购等的id
+	String time;		//发起活动时间戳
 	String brief;
 	String detail;
 	String name;
@@ -15,7 +15,7 @@ public class Activity {
 	
 	public Activity(){}
 	
-	public Activity(String weiid, int companyid, int type, int goodsid, String time, String brief, 
+	public Activity(String weiid, String companyid, int type, String goodsid, String time, String brief, 
 			String detail, String name, String password){
 		this.weiid = weiid;
 		this.companyid = companyid;
@@ -28,10 +28,10 @@ public class Activity {
 		this.password = password;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -42,10 +42,10 @@ public class Activity {
 		this.weiid = weiid;
 	}
 	
-	public int getCompanyid() {
+	public String getCompanyid() {
 		return companyid;
 	}
-	public void setCompanyid(int companyid) {
+	public void setCompanyid(String companyid) {
 		this.companyid = companyid;
 	}
 	
@@ -56,10 +56,10 @@ public class Activity {
 		this.type = type;
 	}
 	
-	public int getGoodsid() {
+	public String getGoodsid() {
 		return goodsid;
 	}
-	public void setGoodsid(int goodsid) {
+	public void setGoodsid(String goodsid) {
 		this.goodsid = goodsid;
 	}
 	

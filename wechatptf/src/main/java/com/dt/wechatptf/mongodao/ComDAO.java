@@ -7,8 +7,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 public class ComDAO extends BaseDAO{
-
-	final MemComDAO mcd = new MemComDAO();
 	
 	public ComDAO() {
 		super("company");
@@ -54,6 +52,7 @@ public class ComDAO extends BaseDAO{
 		try {
 			this.dc.remove(new BasicDBObject("id", companyid));
 			
+			MemComDAO mcd = new MemComDAO();
 			msg = mcd.deleteMemInCom(companyid);
 			if(msg.getFail() == 0){
 				msg.setMessage("删除商家成功！");

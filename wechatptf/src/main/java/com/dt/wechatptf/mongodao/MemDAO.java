@@ -10,8 +10,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 public class MemDAO extends BaseDAO{
-	
-	final MemComDAO mcd = new MemComDAO();
 
 	public MemDAO() {
 		super("member");
@@ -37,6 +35,7 @@ public class MemDAO extends BaseDAO{
 				.append("phone", member.getPhone())
 				.append("points", member.getPoints()));
 			
+			MemComDAO mcd = new MemComDAO();
 			msg = mcd.addMemToCom(memberid, member.getWeiid(), companyid);
 			if(msg.getFail() == 0){
 				msg.setMessage("添加会员成功！");
@@ -57,6 +56,7 @@ public class MemDAO extends BaseDAO{
 	 */
 	public ReturnMessage deleteMember(String weiid, String companyid){
 		ReturnMessage msg = new ReturnMessage();
+		MemComDAO mcd = new MemComDAO();
 		String memberid = mcd.queryMemberid(weiid, companyid);
 		try {
 			this.dc.remove(new BasicDBObject("id", memberid));
@@ -81,6 +81,7 @@ public class MemDAO extends BaseDAO{
 	 */
 	public ReturnMessage updateMember(Member member, String companyid){
 		ReturnMessage msg = new ReturnMessage();
+		MemComDAO mcd = new MemComDAO();
 		String memberid = mcd.queryMemberid(member.getWeiid(), companyid);
 		DBObject o = this.dc.findOne(new BasicDBObject("id", memberid));
 		o.put("name", member.getName());
@@ -109,6 +110,7 @@ public class MemDAO extends BaseDAO{
 	 */
 	public Member queryMember(String weiid, String companyid){
 		Member member = new Member();
+		MemComDAO mcd = new MemComDAO();
 		String memberid = mcd.queryMemberid(weiid, companyid);
 		member = this.queryMemById(memberid);
 		return member;
