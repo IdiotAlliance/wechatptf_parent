@@ -50,11 +50,10 @@ public class ComDAO extends BaseDAO{
 		DBObject o = this.dc.findOne(new BasicDBObject("account", account));
 		String companyid = (String)o.get("id");
 		try {
-			this.dc.remove(new BasicDBObject("id", companyid));
-			
 			MemComDAO mcd = new MemComDAO();
 			msg = mcd.deleteMemInCom(companyid);
 			if(msg.getFail() == 0){
+				this.dc.remove(new BasicDBObject("id", companyid));
 				msg.setMessage("删除商家成功！");
 			}
 		} catch (Exception e) {

@@ -36,8 +36,8 @@ public class ProductDAO {
 			ps1.setDouble(3, product.getPrice());
 			ps1.setString(4, product.getDescription());
 			ps1.setString(5, product.getCover());
-			ps1.setDate(6, product.getStart_date());
-			ps1.setDate(7, product.getEnd_date());
+			//ps1.setDate(6, product.getStart_date());
+			//ps1.setDate(7, product.getEnd_date());
 			ps1.setInt(8, product.getPoint());
 			ps1.setInt(9, product.getStock());
 			ps1.executeUpdate();
@@ -50,13 +50,13 @@ public class ProductDAO {
 			long id = (Long)ret;
 			int productid = (int) id;
 			
-			for(int i=0; i<product.getPictures().size(); i++){
-				pd.addPicture(productid, product.getPictures().get(i));
-			}
+//			for(int i=0; i<product.getPictures().size(); i++){
+//				pd.addPicture(productid, product.getPictures().get(i));
+//			}
 			
-			for(int i=0; i<product.getType().size(); i++){
-				ptd.addProType(productid, product.getType().get(i));
-			}
+//			for(int i=0; i<product.getType().size(); i++){
+//				ptd.addProType(productid, product.getType().get(i));
+//			}
 			
 			message.setFail(0);
 			message.setMessage("添加商品成功！");
@@ -114,11 +114,11 @@ public class ProductDAO {
 			ps1.setDouble(2, product.getPrice());
 			ps1.setString(3, product.getDescription());
 			ps1.setString(4, product.getCover());
-			ps1.setDate(5, product.getStart_date());
-			ps1.setDate(6, product.getEnd_date());
+			//ps1.setDate(5, product.getStart_date());
+			//ps1.setDate(6, product.getEnd_date());
 			ps1.setInt(7, product.getPoint());
 			ps1.setInt(8, product.getStock());
-			ps1.setInt(9, product.getId());
+			//ps1.setInt(9, product.getId());
 			ps1.executeUpdate();
 			message.setFail(0);
 			message.setMessage("更新商品信息成功！");
@@ -143,7 +143,7 @@ public class ProductDAO {
 			ps.setInt(1, productid);
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()){
-				pro.setId(rs.getInt(1));
+				//pro.setId(rs.getInt(1));
 				pro.setName(rs.getString(3));
 				pro.setPrice(rs.getDouble(4));
 				pro.setDescription(rs.getString(5));
@@ -152,8 +152,8 @@ public class ProductDAO {
 				pro.setEnd_date(rs.getDate(8));
 				pro.setPoint(rs.getInt(9));
 				pro.setStock(rs.getInt(10));
-				pro.setPictures(pd.queryPicture(productid));
-				pro.setType(ptd.queryTypeOfPro(productid));
+				//pro.setPictures(pd.queryPicture(productid));
+				//pro.setType(ptd.queryTypeOfPro(productid));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -176,7 +176,7 @@ public class ProductDAO {
 			while (rs.next()){
 				Product pro = new Product();
 				int productid = rs.getInt(1);
-				pro.setId(productid);
+				//pro.setId(productid);
 				pro.setName(rs.getString(3));
 				pro.setPrice(rs.getDouble(4));
 				pro.setDescription(rs.getString(5));
@@ -185,8 +185,8 @@ public class ProductDAO {
 				pro.setEnd_date(rs.getDate(8));
 				pro.setPoint(rs.getInt(9));
 				pro.setStock(rs.getInt(10));
-				pro.setPictures(pd.queryPicture(productid));
-				pro.setType(ptd.queryTypeOfPro(productid));
+				//pro.setPictures(pd.queryPicture(productid));
+				//pro.setType(ptd.queryTypeOfPro(productid));
 				pros.add(pro);
 			}
 		} catch (SQLException e) {

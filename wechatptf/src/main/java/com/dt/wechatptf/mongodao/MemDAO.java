@@ -59,10 +59,9 @@ public class MemDAO extends BaseDAO{
 		MemComDAO mcd = new MemComDAO();
 		String memberid = mcd.queryMemberid(weiid, companyid);
 		try {
-			this.dc.remove(new BasicDBObject("id", memberid));
-			
 			msg = mcd.deleteMemFromCom(memberid);
 			if(msg.getFail() == 0){
+				this.dc.remove(new BasicDBObject("id", memberid));
 				msg.setMessage("删除会员成功！");
 			}
 		} catch (Exception e) {

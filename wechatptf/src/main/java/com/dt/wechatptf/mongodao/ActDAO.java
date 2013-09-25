@@ -54,11 +54,10 @@ public class ActDAO extends BaseDAO{
 		String actid = this.queryActId(weiid, type, goodsid, time);
 		if(actid != null){
 			try {
-				this.dc.remove(new BasicDBObject("id", actid));
-				
 				SignUpDAO sud = new SignUpDAO();
 				msg = sud.deleteSignUp(actid);
 				if(msg.getFail() == 0){
+					this.dc.remove(new BasicDBObject("id", actid));
 					msg.setMessage("删除活动成功！");
 				}
 			} catch (Exception e) {

@@ -3,6 +3,8 @@ package com.dt.wechatptf.services;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import com.dt.wechatptf.entity.Graphic;
+
 public interface ProductService {
 	
 	public String addType(String name);
@@ -12,11 +14,11 @@ public interface ProductService {
 	public String queryAllType();
 	
 	public String addProduct(String name, double price, String description, String cover, 
-			Date start_date, Date end_date, int point, int stock, ArrayList<String> pics, 
-			ArrayList<Integer> type, int companyid);
+			Date start_date, Date end_date, int point, int stock, ArrayList<Graphic> gras, 
+			int companyid);
 	public String deleteProduct(int productid);
 	public String updateProduct(String name, double price, String description, String cover, 
-			Date start_date, Date end_date, int point, int stock, int productid);
+			Date start_date, Date end_date, int point, int stock, String productid);
 	public String queryProduct(int productid);
 	public String queryAllPro(int companyid);
 	

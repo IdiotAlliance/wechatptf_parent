@@ -14,6 +14,7 @@ import com.dt.wechatptf.dao.ProductDAO;
 import com.dt.wechatptf.dao.ProductPictureDAO;
 import com.dt.wechatptf.dao.ProductTypeDAO;
 import com.dt.wechatptf.dao.TypeDAO;
+import com.dt.wechatptf.entity.Graphic;
 import com.dt.wechatptf.entity.Product;
 import com.google.gson.Gson;
 
@@ -62,9 +63,9 @@ public class ProductServiceImpl implements ProductService {
 	public String addProduct(@FormParam("name") String name, @FormParam("price") double price, 
 			@FormParam("description") String description, @FormParam("cover") String cover, 
 			@FormParam("start_date") Date start_date, @FormParam("end_date") Date end_date, 
-			@FormParam("point") int point, @FormParam("stock") int stock, ArrayList<String> pics, 
-			ArrayList<Integer> type, @PathParam("companyid") int companyid) {
-		Product p = new Product(name,price,description,cover,start_date,end_date,point,stock,pics,type);
+			@FormParam("point") int point, @FormParam("stock") int stock, ArrayList<Graphic> gras, 
+			@PathParam("companyid") int companyid) {
+		Product p = new Product(name,price,description,cover,start_date,end_date,point,stock,gras);
 		return gson.toJson(pd.addProduct(p, companyid));
 	}
 	
@@ -79,8 +80,8 @@ public class ProductServiceImpl implements ProductService {
 	public String updateProduct(@FormParam("name") String name, @FormParam("price") double price, 
 			@FormParam("description") String description, @FormParam("cover") String cover, 
 			@FormParam("start_date") Date start_date, @FormParam("end_date") Date end_date, 
-			@FormParam("point") int point, @FormParam("stock") int stock, @PathParam("productid") int productid) {
-		Product p = new Product(name,price,description,cover,start_date,end_date,point,stock,null,null);
+			@FormParam("point") int point, @FormParam("stock") int stock, @PathParam("productid") String productid) {
+		Product p = new Product(name,price,description,cover,start_date,end_date,point,stock,null);
 		p.setId(productid);
 		return gson.toJson(pd.updateProduct(p));
 	}
