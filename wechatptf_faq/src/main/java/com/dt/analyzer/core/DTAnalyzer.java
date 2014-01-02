@@ -13,6 +13,15 @@ import com.dt.analyzer.entity.Document;
 import com.dt.analyzer.entity.Token;
 import com.dt.analyzer.entity.TokenProfile;
 
+/***
+ * 文档分析器，分析txt doc excel等文件；或者url指向的资源；或者内存中的资源。
+ * 资源必须以{问题,答案}二元组的方式呈现，分析器首先对问题用分词器进行分词；
+ * 然后构建逆向索引，构建时需要考虑同意词，根据分词结果，将文档编号添加到每个
+ * 词及其同义词的逆向索引中去；最后，原文档本身也要放到对应的文档数据库中去。
+ * 
+ * @author lvxiang
+ *
+ */
 public class DTAnalyzer {
 	
 	private static final int MAX_DOCS = 100;
@@ -127,7 +136,8 @@ public class DTAnalyzer {
 	
 	public static enum ResourceAnalyzerStrategy{
 		TEXT_STRATEGY, // 简单文本文件
-		DOC_STRATEGY,  // word格式文件
+		DOC_STRATEGY,  // word2003格式文件
+		DOCX_STRATEGY, // word2007格式文件
 		EXCEL_STRATEGY; // excel文件
 	}
 	

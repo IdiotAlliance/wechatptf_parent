@@ -273,13 +273,13 @@ public final class DTTokenizer {
 		return false;
 	}
 	
-//	public static void main(String[] args){
-//		tokensInStr("你好");
-//		
-//		List<Token> tokens = complexTokenize("蓝莲花");
-//		for(Token token: tokens){
-//			System.out.print(token.getToken() + "|");
-//		}
-//	}
+	public static void main(String[] args){
+		tokensInStr("你好");
+		
+		List<Token> tokens = complexTokenize("我喜欢你");
+		for(Token token: tokens){
+			System.out.print(token.getToken() + "|");
+		}
+	}
 	
 }
